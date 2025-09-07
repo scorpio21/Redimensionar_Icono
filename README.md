@@ -74,3 +74,8 @@ Cómo instalar como app (PWA):
 ## Licencia
 
 MIT
+
+## Releases
+
+- v1.0.1 (último): https://github.com/scorpio21/Redimensionar_Icono/releases/tag/v1.0.1
+- v1.0.0: https://github.com/scorpio21/Redimensionar_Icono/releases/tag/v1.0.0
