@@ -1,5 +1,5 @@
-// sw.js
-// Service Worker simple para cache estático
+// sw.js (raíz)
+// Service Worker simple para cache estático con scope en la raíz del proyecto
 
 const CACHE_NAME = 'redimensionar-icono-v1';
 const ASSETS = [
@@ -10,7 +10,6 @@ const ASSETS = [
   'js/resize.js',
   'js/manifest.js',
   'js/pwa.js',
-  'js/sw.js',
   'manifest.json',
   'img/favicon-16x16.png',
   'img/favicon-32x32.png',
@@ -19,7 +18,21 @@ const ASSETS = [
 
 self.addEventListener('install', (event) => {
   event.waitUntil(
-    caches.open(CACHE_NAME).then((cache) => cache.addAll(ASSETS))
+    caches.open(CACHE_NAME).then(async (cache) => {
+      for (const url of ASSETS) {
+        try {
+          const response = await fetch(url, { cache: 'no-cache' });
+          if (response && response.ok) {
+            await cache.put(url, response.clone());
+          } else {
+            console.warn('[SW] Recurso no cacheado (respuesta no OK):', url);
+          }
+        } catch (err) {
+          console.warn('[SW] Recurso no cacheado (error al fetch):', url, err);
+        }
+      }
+      return true;
+    })
   );
 });
 
@@ -33,7 +46,6 @@ self.addEventListener('activate', (event) => {
 
 self.addEventListener('fetch', (event) => {
   const { request } = event;
-  // Estrategia cache-first con fallback a red
   event.respondWith(
     caches.match(request).then(cached =>
       cached || fetch(request).then(response => {

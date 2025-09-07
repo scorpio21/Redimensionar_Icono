@@ -156,7 +156,8 @@ export function setupResizeEvents() {
     if(format==='jpg'){ mime='image/jpeg'; ext='jpg'; }
     if(format==='webp'){ mime='image/webp'; ext='webp'; }
     const link = document.createElement('a');
-    link.download = `img/${userBase}-${size}x${size}.${ext}`;
+    // No incluir carpeta en el nombre sugerido; algunos navegadores reemplazan '/' por '-'
+    link.download = `${userBase}-${size}x${size}.${ext}`;
     link.href = resizedCanvas.toDataURL(mime);
     link.click();
     // --- Registrar icono generado en manifest ---
@@ -209,7 +210,8 @@ export function setupResizeEvents() {
     const mime = 'image/png';
     const ext = 'png';
     const link = document.createElement('a');
-    link.download = `img/${filename}.${ext}`;
+    // Sugerir solo el nombre del archivo, sin carpeta
+    link.download = `${filename}.${ext}`;
     link.href = canvas.toDataURL(mime);
     link.click();
     registerIcon({

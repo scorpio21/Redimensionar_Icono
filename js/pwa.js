@@ -5,7 +5,8 @@ export function registerServiceWorker() {
   if ('serviceWorker' in navigator) {
     window.addEventListener('load', async () => {
       try {
-        const reg = await navigator.serviceWorker.register('/js/sw.js');
+        // Registrar el SW en la raíz del proyecto (sw.js)
+        const reg = await navigator.serviceWorker.register('sw.js');
         console.log('[PWA] Service Worker registrado:', reg.scope);
       } catch (err) {
         console.warn('[PWA] Error registrando SW:', err);
