@@ -42,6 +42,28 @@ Aplicación web ligera para redimensionar una imagen a los tamaños más comunes
 - iOS: usa `apple-touch-icon` de 180×180 (ya enlazado desde `index.php`).
 - Favicons: 16×16 y 32×32 (ya enlazados desde `index.php`).
 
+### Manifest real
+
+Este proyecto incluye un `manifest.json` mínimo ya enlazado desde `index.php`:
+
+- `name`, `short_name`, `start_url`, `display`, `theme_color`, `background_color`.
+- `icons`: `img/icon-192x192.png` y `img/icon-512x512.png` con `purpose: any maskable`.
+
+Para que el manifest tenga efecto, asegúrate de generar esos archivos PNG con el botón "Descargar básicos".
+
+## Service Worker (offline básico)
+
+- Archivo: `js/sw.js` (cache-first simple para CSS/JS/manifest e iconos base).
+- Registro: desde `js/pwa.js` y cargado en `index.php`.
+
+Cómo probar el modo offline:
+1. Accede a la app desde `http://localhost/...` (no file://).
+2. Abre DevTools → Application → Service Workers y verifica que está "activated".
+3. Marca "Offline" en la pestaña Network y recarga: la app debe seguir cargando gracias a la caché.
+
+Cómo instalar como app (PWA):
+- En Chrome/Edge móvil o escritorio, usa "Instalar" en la barra de URL o el menú. El icono/tema provienen del `manifest.json`.
+
 ## Desarrollo
 
 - PHP simple con módulos JS. No hay dependencias externas.

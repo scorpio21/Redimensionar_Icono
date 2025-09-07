@@ -12,6 +12,8 @@
     <link rel="icon" type="image/png" sizes="16x16" href="img/favicon-16x16.png">
     <link rel="icon" type="image/png" sizes="32x32" href="img/favicon-32x32.png">
     <link rel="apple-touch-icon" sizes="180x180" href="img/apple-touch-icon.png">
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="manifest.json">
 </head>
 <body>
 <div class="header-bar">
@@ -79,12 +81,15 @@
   import { setupLangSelector, updateLangTexts } from './js/lang.js';
   import { setupResizeEvents } from './js/resize.js';
   import { setupCopyManifest } from './js/manifest.js';
+  import { registerServiceWorker, installPromptHelper } from './js/pwa.js';
 
   setupDarkModeButton();
   setupLangSelector(updateLangTexts);
   setupResizeEvents();
   updateLangTexts();
   setupCopyManifest();
+  registerServiceWorker();
+  installPromptHelper();
 </script>
 </body>
 </html>
