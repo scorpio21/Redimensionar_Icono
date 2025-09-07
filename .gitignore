@@ -1,0 +1,37 @@
+# Sistema / SO
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# Entornos/variables
+.env
+.env.*
+
+# Logs y temporales
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+*.tmp
+*.temp
+
+# Dependencias comunes (no usadas ahora, por si acaso)
+node_modules/
+vendor/
+
+# Builds/artefactos
+build/
+dist/
+coverage/
+.cache/
+
+# IDE/Editor
+.vscode/
+.idea/
+*.swp
+
+# Imágenes generadas por la app (no versionarlas si son salidas del usuario)
+img/*
+!img/.gitkeep
+# Si deseas versionar algunos íconos base, comenta la línea "img/*" anterior
